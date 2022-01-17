@@ -1,0 +1,114 @@
+body {
+  font-size: 16px;
+}
+
+.slide-container {
+  --main-frame-width: 480px;
+  --main-frame-height: 270px;
+  --container-width: 960px;
+  --container-height: var(--main-frame-height) + 1.2rem;
+
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: var(--container-width);
+  height: var(--container-height);
+}
+
+.main-frame {
+  position: relative;
+  width: var(--main-frame-width);
+  height: var(--main-frame-height);
+  z-index: 1;
+  .main-image {
+    width: 100%;
+  }
+}
+
+.main-image.move-next {
+  animation: moveleft 0.2s ease;
+  @keyframes moveleft {
+    from {
+      transform: translate(60px, 0) scale(0.9);
+    }
+    to {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+}
+
+.main-image.move-prev {
+  animation: moveright 0.2s ease;
+  @keyframes moveright {
+    from {
+      transform: translate(-60px, 0) scale(0.9);
+    }
+    to {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+}
+
+.slide-cursor {
+  position: absolute;
+  top: calc(var(--main-frame-height) / 2 - 2rem);
+  padding: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  background-color: transparent;
+  user-select: none;
+  cursor: pointer;
+}
+
+.slide-cursor:hover {
+  background-color: rgba(128, 128, 128, 0.8);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.dot-container {
+  text-align: center;
+  height: 1.2rem;
+  .slide-dot {
+    display: inline-block;
+    height: 0.8rem;
+    width: 0.8rem;
+    margin: 0.2rem;
+    border-radius: 50%;
+    background-color: rgba(128, 128, 128, 0.6);
+  
+    transition: background-color 0.6s ease;
+    cursor: pointer;
+  }
+  .selected, .slide-dot:hover {
+    background-color: rgba(100, 100, 100, 1);
+  }
+}
+
+.bg-frame {
+  position: absolute;
+  width: var(--main-frame-width);
+  height: var(--main-frame-height);
+  z-index: 0;
+  .bg-image {
+    width: 100%;
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+}
+
+.bg-frame.left {
+  left: 0;
+}
+
+.bg-frame.right {
+  right: 0;
+}
